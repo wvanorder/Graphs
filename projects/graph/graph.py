@@ -122,8 +122,10 @@ class Graph:
             last_node = path[-1]
             if last_node == destination_vertex:
                 return path
+
             if last_node not in visited:
                 visited.add(last_node)
+
                 neighbors = self.get_neighbors(last_node)
                 for neighbor_node in neighbors:
                     new_path = [*path] + [neighbor_node]
@@ -143,8 +145,7 @@ class Graph:
             visited.add(starting_vertex)
             neighbors = [node for node in self.get_neighbors(starting_vertex) if node not in visited]
 
-            if len(neighbors) == 0:
-                return None
+            #returns none by default if neighbors is empty
             for neighbor_node in neighbors:
                 path = self.dfs_recursive(neighbor_node, destination_vertex)
                 if path:
