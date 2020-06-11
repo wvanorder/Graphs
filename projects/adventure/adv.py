@@ -38,14 +38,14 @@ def explore(room, visited=None):
         visited = set()
     path = []
     visited.add(room.id)
-    for dir in room.get_exits():
-        new_room = room.get_room_in_direction(dir)
+    for direction in room.get_exits():
+        new_room = room.get_room_in_direction(direction)
         if new_room.id not in visited:
             new_room_path = explore(new_room, visited)
             if new_room_path:
-                local_path = [dir] + new_room_path + [opposite_directions[dir]]
+                local_path = [direction] + new_room_path + [opposite_directions[direction]]
             else:
-                local_path = [dir, opposite_directions[dir]]
+                local_path = [direction, opposite_directions[direction]]
             path = path + local_path
     
     return path
